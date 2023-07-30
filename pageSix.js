@@ -62,6 +62,7 @@ const promiseTest = new Promise((resolve, reject) => {
   }, 2000)
 })
 
+// then, catch 문으로 처리
 promiseTest
   .then((result) => {
     console.log(result)
@@ -70,6 +71,7 @@ promiseTest
     console.error(error);
   })
 
+// async과 await 사용
 async function PT(){
   try{
     const a = await promiseTest;
