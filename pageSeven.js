@@ -86,3 +86,28 @@ if (result) {
 }
 
 console.log("After:", obj); // { name: 'John', age: 31 }
+
+const parseString = require('xml2js').parseString;
+
+fetch('https://apis.data.go.kr/1613000/BusSttnInfoInqireService/getCrdntPrxmtSttnList?serviceKey=joKaZp3MojMlG5ctM0OwBqz7tYkkTyJM4FX3Rg3LRKO%2BWTWWEUsE0Q3TH0HAtz%2FRKQMHyLvtcCR9QCLT8ZOUEQ%3D%3D&pageNo=1&numOfRows=10&_type=xml&gpsLati=36.3&gpsLong=127.3')
+  .then(response => response.text()) // 서버 응답을 JSON 형태로 파싱
+  .then(xmlData => {
+    // xmlData를 XML 파싱하여 JSON 형태로 변환
+    parseString(xmlData, (err, result) => {
+      if (result) {
+        console.log(result);
+      } else {
+        console.error('error', err);
+      }
+    });
+  })
+  .catch(error => {
+    // 요청이 실패했을 때 오류 처리
+    console.error('Error:', error);
+  });
+
+localStorage.setItem('testKey', 'Taek');
+
+// "username"이라는 키에 해당하는 값을 가져옵니다.
+const username = localStorage.getItem("testKey");
+console.log(username); // 출력 결과: "John"
