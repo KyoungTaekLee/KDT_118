@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>localStorage 사용 예제</title>
+</head>
+
+<body>
+  <label for="inputField">값 입력:</label>
+  <input type="text" id="inputField">
+  <button onclick="saveData()">저장</button>
+  <button onclick="loadData()">불러오기</button>
+  <button onclick="clearData()">지우기</button>
+
+  <!-- 스크립트 -->
+  
+  <script>
+    function saveData() {
+      const inputField = document.getElementById('inputField');
+      const valueToSave = inputField.value;
+
+      if (valueToSave.trim() === '') {
+        alert('값을 입력하세요.');
+        return;
+      }
+
+      // 데이터를 로컬스토리지에 저장
+      localStorage.setItem('savedValue', valueToSave);
+      alert('데이터가 저장되었습니다.');
+    }
+
+    // 불러오기 버튼 클릭 시 호출될 함수
+    function loadData() {
+      // 로컬스토리지에서 데이터를 불러와서 텍스트 필드에 채우기
+      const savedValue = localStorage.getItem('savedValue');
+
+      if (savedValue) {
+        const inputField = document.getElementById('inputField');
+        inputField.value = savedValue;
+        alert('데이터를 불러왔습니다.');
+        console.log('불러온 데이터: ', inputField.value)
+      } else {
+        alert('저장된 데이터가 없습니다.');
+      }
+    }
+
+    // 지우기 버튼 클릭 시 호출될 함수
+    function clearData() {
+      // 로컬스토리지에서 저장된 데이터 지우기
+      localStorage.removeItem('savedValue');
+      alert('데이터를 지웠습니다.');
+    }
+  </script>
+</body>
+
+</html>
