@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <input type="text" placeholder="입력" id="inputField">
+    <button id="btnOne" onclick="saveData()">저장</button>
+    <button id="btnTwo" onclick="comeData()">불러오기</button>
+  </div>
+  <script>
+    // 데이터 저장하기
+    function saveData() {
+      const input = document.getElementById('inputField');
+      const valueToSave = input.value;
+
+      if (valueToSave.trim() === '') {
+        alert('값을 입력하세요.');
+        return;
+      }
+
+      // 데이터를 로컬스토리지에 저장
+      sessionStorage.setItem('savedValue', valueToSave);
+      alert('데이터가 저장되었습니다.');
+    }
+    // 데이터 불러오기
+    function comeData(){
+      const savedValue = sessionStorage.getItem('savedValue');
+      if (savedValue) {
+        const inputField = document.getElementById('inputField');
+        inputField.value = savedValue;
+        alert('데이터를 불러왔습니다.');
+        console.log('불러온 데이터: ', inputField.value)
+      } else {
+        alert('저장된 데이터가 없습니다.');
+      }
+    }
+  </script>
+</body>
+
+</html>
